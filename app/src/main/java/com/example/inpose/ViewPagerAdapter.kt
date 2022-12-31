@@ -11,7 +11,7 @@ class ViewPagerAdapter(fragment: FragmentActivity): FragmentStateAdapter(fragmen
     override fun createFragment(position: Int): Fragment {
         return when(position) {
             0 -> FollowingFragment()
-            else -> PhotologFragment()
+            else -> PhotoLogFragment()
         }
     }
 }

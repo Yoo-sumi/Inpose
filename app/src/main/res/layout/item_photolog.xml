@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="story"
+            type="com.example.inpose.data.Story" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:id="@+id/imageView_photolog_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_circle"
+            app:profileImageFromUrl="@{story.profileImage[0]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_photolog_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{story.nickname}"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textView_photolog_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintStart_toEndOf="@+id/imageView_photolog_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <TextView
+            android:id="@+id/textView_photolog_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{story.type}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/imageView_photolog_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.021"
+            app:layout_constraintStart_toEndOf="@+id/imageView_photolog_profile"
+            app:layout_constraintTop_toBottomOf="@+id/textView_photolog_nickname" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton_photolog_follow"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:textSize="12sp"
+            android:textOff="팔로우"
+            android:textOn="팔로잉"
+            android:textColor="@drawable/text_selector"
+            android:background="@drawable/toggle_follow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageView_photolog_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:adjustViewBounds="true"
+            app:imageFromUrl="@{story.image[0]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_photolog_profile"
+            app:layout_constraintVertical_bias="0.1"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView_photolog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{story.title}"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            tools:text="하하하"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/imageView_photolog_profile"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_photolog_image"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <TextView
+            android:id="@+id/textView_photolog_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{story.content}"
+            android:textSize="10sp"
+            tools:text="하하하"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_photolog_title"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton_photolog_recommend"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:textOff=""
+            android:textOn=""
+            android:background="@drawable/toggle_recommend"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_photolog_content"
+            app:layout_constraintVertical_bias="0.02" />
+
+        <TextView
+            android:id="@+id/textView_photolog_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(story.recommendCount)}"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleButton_photolog_recommend"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.01"
+            app:layout_constraintStart_toEndOf="@+id/toggleButton_photolog_recommend"
+            app:layout_constraintTop_toTopOf="@id/toggleButton_photolog_recommend"
+            app:layout_constraintVertical_bias="0.02" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton_photolog_comment"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icn_comment_small"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintStart_toEndOf="@id/textView_photolog_recommend"
+            app:layout_constraintTop_toBottomOf="@+id/textView_photolog_content"
+            app:layout_constraintVertical_bias="0.02" />
+
+        <TextView
+            android:id="@+id/textView_photolog_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(story.commentCount)}"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/toggleButton_photolog_recommend"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.01"
+            app:layout_constraintStart_toEndOf="@+id/toggleButton_photolog_comment"
+            app:layout_constraintTop_toTopOf="@id/toggleButton_photolog_recommend"
+            app:layout_constraintVertical_bias="0.02" />
+
+        <TextView
+            android:id="@+id/textView_photolog_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            app:date="@{story.createdAt}"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_photolog_comment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_photolog_image" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="30dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_photolog_date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/light_gray"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

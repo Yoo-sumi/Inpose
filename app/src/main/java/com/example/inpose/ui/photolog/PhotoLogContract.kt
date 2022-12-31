@@ -1,10 +1,8 @@
-package com.example.inpose
+package com.example.inpose.ui.photolog
 
-import android.content.Context
-import androidx.paging.PagingData
 import com.example.inpose.data.Story
 
-interface MainContract {
+interface PhotoLogContract {
 
     interface View {
 

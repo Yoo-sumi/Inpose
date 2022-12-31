@@ -1,22 +1,21 @@
-package com.example.inpose.adapter
+package com.example.inpose.ui.photolog.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inpose.R
 import com.example.inpose.data.Story
-import com.example.inpose.databinding.ItemPhotologBinding
+import com.example.inpose.databinding.ItemStoryBinding
 
 class PhotoLogListAdapter : RecyclerView.Adapter<PhotoLogListAdapter.StoryViewHolder>() {
 
     private var storyList = mutableListOf<Story>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryViewHolder {
-        val binding: ItemPhotologBinding = DataBindingUtil.inflate(
+        val binding: ItemStoryBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.item_photolog,
+            R.layout.item_story,
             parent,
             false
         )
@@ -33,7 +32,7 @@ class PhotoLogListAdapter : RecyclerView.Adapter<PhotoLogListAdapter.StoryViewHo
         storyList = (storyList + newStoryList) as MutableList<Story>
     }
 
-    class StoryViewHolder(private val binding: ItemPhotologBinding) :
+    class StoryViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {

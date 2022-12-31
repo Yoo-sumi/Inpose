@@ -1,24 +1,23 @@
-package com.example.inpose
+package com.example.inpose.ui.photolog
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.inpose.adapter.PhotoLogListAdapter
+import com.example.inpose.ui.photolog.adapter.PhotoLogListAdapter
 import com.example.inpose.data.Story
 import com.example.inpose.data.photolog.PhotoLogRepository
 import com.example.inpose.databinding.FragmentPhotologBinding
 
-class PhotoLogFragment : Fragment(), MainContract.View {
+class PhotoLogFragment : Fragment(), PhotoLogContract.View {
 
     private lateinit var binding: FragmentPhotologBinding
     private lateinit var photoLogListAdapter: PhotoLogListAdapter
-    private val presenter: MainPresenter by lazy {
-        MainPresenter(
+    private val presenter: PhotoLogPresenter by lazy {
+        PhotoLogPresenter(
             view = this@PhotoLogFragment,
             photoLogRepository = PhotoLogRepository()
         )

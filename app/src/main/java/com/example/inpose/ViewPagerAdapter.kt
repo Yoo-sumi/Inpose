@@ -3,6 +3,8 @@ package com.example.inpose
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.inpose.ui.following.FollowingFragment
+import com.example.inpose.ui.photolog.PhotoLogFragment
 
 class ViewPagerAdapter(fragment: FragmentActivity): FragmentStateAdapter(fragment) {
 

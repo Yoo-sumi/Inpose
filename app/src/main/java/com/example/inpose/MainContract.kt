@@ -13,6 +13,6 @@ interface MainContract {
 
     interface Presenter {
 
-        fun loadItems()
+        fun loadItems(page: Int)
     }
 }

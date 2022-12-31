@@ -1,10 +1,13 @@
 package com.example.inpose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.inpose.adapter.PhotoLogListAdapter
 import com.example.inpose.data.Story
 import com.example.inpose.data.photolog.PhotoLogRepository
@@ -34,10 +37,28 @@ class PhotoLogFragment : Fragment(), MainContract.View {
         super.onViewCreated(view, savedInstanceState)
         photoLogListAdapter = PhotoLogListAdapter()
         binding.recyclerViewPhotolog.adapter = photoLogListAdapter
-        presenter.loadItems()
+        presenter.loadItems(photoLogListAdapter.itemCount)
+        initScrollListener()
     }
 
     override fun updateAdapter(storyList: List<Story>) {
-        photoLogListAdapter.submitList(storyList)
+        val itemCount = photoLogListAdapter.itemCount
+        photoLogListAdapter.addStoryList(storyList)
+        photoLogListAdapter.notifyItemChanged(itemCount - 1, itemCount - 1 + 20)
+    }
+
+    private fun initScrollListener(){
+        binding.recyclerViewPhotolog.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if ((recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition() == photoLogListAdapter.itemCount - 5){
+                    moreItems()
+                }
+            }
+        })
+    }
+
+    private fun moreItems() {
+        presenter.loadItems(photoLogListAdapter.itemCount / 20)
     }
 }

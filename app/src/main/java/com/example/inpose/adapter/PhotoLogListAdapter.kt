@@ -30,12 +30,21 @@ class PhotoLogListAdapter : RecyclerView.Adapter<PhotoLogListAdapter.StoryViewHo
     }
 
     fun addStoryList(newStoryList: List<Story>) {
-        Log.d("MainActivity", "${storyList.size}")
         storyList = (storyList + newStoryList) as MutableList<Story>
     }
 
     class StoryViewHolder(private val binding: ItemPhotologBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.toggleButtonPhotologRecommend.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    binding.textViewPhotologRecommend.text = binding.textViewPhotologRecommend.text.toString().toInt().plus(1).toString()
+                } else {
+                    binding.textViewPhotologRecommend.text = binding.textViewPhotologRecommend.text.toString().toInt().minus(1).toString()
+                }
+            }
+        }
 
         fun bind(story: Story) {
             binding.story = story

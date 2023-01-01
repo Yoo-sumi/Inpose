@@ -11,6 +11,7 @@ import com.example.inpose.databinding.ItemStoryBinding
 class PhotoLogListAdapter : RecyclerView.Adapter<PhotoLogListAdapter.StoryViewHolder>() {
 
     private var storyList = mutableListOf<Story>()
+    private var index: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoryViewHolder {
         val binding: ItemStoryBinding = DataBindingUtil.inflate(
@@ -40,6 +41,8 @@ class PhotoLogListAdapter : RecyclerView.Adapter<PhotoLogListAdapter.StoryViewHo
     fun addStoryList(newStoryList: List<Story>) {
         storyList = (storyList + newStoryList) as MutableList<Story>
     }
+
+    fun getIndex() = index++
 
     class StoryViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {

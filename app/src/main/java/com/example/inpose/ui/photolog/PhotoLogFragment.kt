@@ -41,13 +41,13 @@ class PhotoLogFragment : Fragment(), PhotoLogContract.View {
     override fun updateAdapter(storyList: List<Story>) {
         val itemCount = photoLogListAdapter.itemCount
         photoLogListAdapter.addStoryList(storyList)
-        photoLogListAdapter.notifyItemChanged(itemCount - 1, itemCount - 1 + 20)
+        photoLogListAdapter.notifyItemChanged(itemCount - 1, storyList.size - 1)
     }
 
     private fun initAdapter() {
         photoLogListAdapter = PhotoLogListAdapter()
         binding.recyclerViewPhotolog.adapter = photoLogListAdapter
-        presenter.loadItems(photoLogListAdapter.itemCount)
+        presenter.loadItems(photoLogListAdapter.getIndex())
     }
 
     private fun initScrollListener() {
@@ -62,6 +62,6 @@ class PhotoLogFragment : Fragment(), PhotoLogContract.View {
     }
 
     private fun moreItems() {
-        presenter.loadItems(photoLogListAdapter.itemCount / 20)
+        presenter.loadItems(photoLogListAdapter.getIndex())
     }
 }

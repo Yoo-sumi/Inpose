@@ -6,8 +6,8 @@
     <data>
         <import type="android.view.View"/>
         <variable
-            name="followingItem"
-            type="com.example.inpose.ui.following.adapter.FollowingItem" />
+            name="focus"
+            type="java.lang.Boolean" />
 
     </data>
 
@@ -30,13 +30,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0"
-            app:profileImageFromUrl="@{followingItem.data.profileImage[0]}" />
+            android:background="@drawable/shape_round"/>
 
         <ImageView
             android:id="@+id/imageView_following_profile_border"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:visibility="@{followingItem.focus ? View.VISIBLE : View.GONE}"
+            android:visibility="@{focus ? View.VISIBLE : View.GONE}"
             android:background="@drawable/shape_round_pressed"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{followingItem.data.nickname}"
+            android:text="@string/following_user_all"
             android:ellipsize="end"
             android:singleLine="true"
             android:layout_gravity="center"
@@ -57,6 +57,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_following_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_user_all"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/imageView_following_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView_following_profile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -20,8 +20,8 @@ fun bindProfileImageFromUrl(view: ImageView, imageUrl: String) {
         .into(view)
 }
 
-@BindingAdapter("imageFromUrl")
-fun bindImageFromUrl(view: ImageView, imageUrl: String) {
+@BindingAdapter("roundImageFromUrl")
+fun bindRoundImageFromUrl(view: ImageView, imageUrl: String) {
     val multiLeftTopCorner: MultiTransformation<Bitmap> = MultiTransformation(
         CenterCrop(),
         RoundedCornersTransformation( 70, 0, RoundedCornersTransformation.CornerType.TOP_RIGHT),
@@ -29,6 +29,17 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String) {
     Glide.with(view.context)
         .load(imageUrl)
         .apply(bitmapTransform(multiLeftTopCorner))
+        .into(view)
+}
+
+@BindingAdapter("imageFromUrl")
+fun bindImageFromUrl(view: ImageView, imageUrl: String) {
+    if (imageUrl == "all") {
+
+    }
+    Glide.with(view.context)
+        .load(imageUrl)
+        .centerCrop()
         .into(view)
 }
 

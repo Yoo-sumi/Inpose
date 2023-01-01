@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Inpose</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="following_tabLayout">팔로잉</string>
     <string name="photolog_tabLayout">포토로그</string>
-    <string name="story_date_format">"%02d월 %02d일"</string>
+    <string name="story_date_format">%02d월 %02d일</string>
+    <string name="item_user_all">ALL</string>
+    <string name="following_user_all">전체보기</string>
 </resources>

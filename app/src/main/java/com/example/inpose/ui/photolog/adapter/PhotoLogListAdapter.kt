@@ -19,6 +19,13 @@ class PhotoLogListAdapter : RecyclerView.Adapter<PhotoLogListAdapter.StoryViewHo
             parent,
             false
         )
+        binding.toggleButtonPhotologRecommend.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                binding.textViewPhotologRecommend.text = binding.textViewPhotologRecommend.text.toString().toInt().plus(1).toString()
+            } else {
+                binding.textViewPhotologRecommend.text = binding.textViewPhotologRecommend.text.toString().toInt().minus(1).toString()
+            }
+        }
         return StoryViewHolder(binding)
     }
 
@@ -34,16 +41,6 @@ class PhotoLogListAdapter : RecyclerView.Adapter<PhotoLogListAdapter.StoryViewHo
 
     class StoryViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-        init {
-            binding.toggleButtonPhotologRecommend.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
-                    binding.textViewPhotologRecommend.text = binding.textViewPhotologRecommend.text.toString().toInt().plus(1).toString()
-                } else {
-                    binding.textViewPhotologRecommend.text = binding.textViewPhotologRecommend.text.toString().toInt().minus(1).toString()
-                }
-            }
-        }
 
         fun bind(story: Story) {
             binding.story = story

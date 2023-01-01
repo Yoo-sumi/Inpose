@@ -50,7 +50,7 @@ class PhotoLogFragment : Fragment(), PhotoLogContract.View {
         binding.recyclerViewPhotolog.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if ((recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition() == photoLogListAdapter.itemCount - 5){
+                if ((recyclerView.layoutManager as LinearLayoutManager?)?.findLastCompletelyVisibleItemPosition() == photoLogListAdapter.itemCount - 5){
                     moreItems()
                 }
             }

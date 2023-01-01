@@ -5,19 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.inpose.ui.photolog.adapter.PhotoLogListAdapter
-import com.example.inpose.data.Story
+import com.example.inpose.data.Feed
 import com.example.inpose.data.User
 import com.example.inpose.data.following.FollowingRepository
 import com.example.inpose.databinding.FragmentFollowingBinding
-import com.example.inpose.ui.following.adapter.FollowListAdapter
+import com.example.inpose.ui.following.adapter.FeedListAdapter
+import com.example.inpose.ui.following.adapter.FollowingItem
+import com.example.inpose.ui.following.adapter.FollowingListAdapter
 
 class FollowingFragment : Fragment(), FollowingContract.View {
 
     private lateinit var binding: FragmentFollowingBinding
-    private lateinit var followListAdapter: FollowListAdapter
+    private lateinit var followListAdapter: FollowingListAdapter
+    private lateinit var feedListAdapter: FeedListAdapter
     private val presenter: FollowingPresenter by lazy {
         FollowingPresenter(
             view = this@FollowingFragment,
@@ -36,34 +36,28 @@ class FollowingFragment : Fragment(), FollowingContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        followListAdapter = FollowListAdapter()
+        feedListAdapter = FeedListAdapter()
+        binding.recyclerViewFollowingFeed.adapter = feedListAdapter
+
+        followListAdapter = FollowingListAdapter {
+            it?.let {
+                presenter.getFeedList(it)
+                return@FollowingListAdapter
+            }
+            presenter.getAllFeedList(followListAdapter.getUserIdList())
+        }
         binding.recyclerViewFollowingUser.adapter = followListAdapter
-        presenter.loadItems(followListAdapter.itemCount)
+        presenter.getFollowList()
     }
 
     override fun updateFollowAdapter(userList: List<User>) {
-        val itemCount = followListAdapter.itemCount
-        followListAdapter.addUserList(userList)
-        followListAdapter.notifyItemChanged(itemCount - 1, itemCount - 1 + 20)
-        initScrollListener()
+        val followingItem = listOf(FollowingItem(0, false, null)) + userList.map { FollowingItem(1, false, it) }
+        followListAdapter.setUserList(followingItem)
+        followListAdapter.notifyItemChanged(0, userList.size - 1)
     }
 
-    override fun updateFeedAdapter(storyList: List<Story>) {
-        TODO("Not yet implemented")
-    }
-
-    private fun initScrollListener(){
-        binding.recyclerViewFollowingUser.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if ((recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition() == followListAdapter.itemCount - 5){
-                    moreUserItems()
-                }
-            }
-        })
-    }
-
-    private fun moreUserItems() {
-        presenter.loadItems(followListAdapter.itemCount / 20)
+    override fun updateFeedAdapter(feedList: List<Feed>) {
+        feedListAdapter = FeedListAdapter(feedList)
+        binding.recyclerViewFollowingFeed.adapter = feedListAdapter
     }
 }

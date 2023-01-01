@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,40 +13,40 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintVertical_bias="0.05"
             app:srcCompat="@drawable/logo_white_shadow_login" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toTopOf="@id/viewPager"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView"
-            app:layout_constraintBottom_toTopOf="@id/viewPager"
-            android:background="@color/transparent"
             app:tabIndicatorColor="@color/gray"
-            app:tabTextColor="@color/light_gray"
-            app:tabSelectedTextColor="@color/white"
             app:tabMode="scrollable"
-            app:layout_constraintHorizontal_bias="0.05"
             app:tabRippleColor="@android:color/transparent"
+            app:tabSelectedTextColor="@color/white"
             app:tabTextAppearance="@style/tab_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            app:tabTextColor="@color/light_gray" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_layout"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

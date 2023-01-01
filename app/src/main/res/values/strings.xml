@@ -6,4 +6,7 @@
     <string name="story_date_format">%02d월 %02d일</string>
     <string name="item_user_all">ALL</string>
     <string name="following_user_all">전체보기</string>
+    <string name="feed_type_beauty">beauty</string>
+    <string name="feed_type_model">model</string>
+    <string name="feed_type_photo">photo</string>
 </resources>

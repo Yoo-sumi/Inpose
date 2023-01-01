@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inpose.R
-import com.example.inpose.data.Story
+import com.example.inpose.data.model.Story
 import com.example.inpose.databinding.ItemStoryBinding
 
 class PhotoLogListAdapter : RecyclerView.Adapter<PhotoLogListAdapter.StoryViewHolder>() {
@@ -19,11 +19,13 @@ class PhotoLogListAdapter : RecyclerView.Adapter<PhotoLogListAdapter.StoryViewHo
             parent,
             false
         )
-        binding.toggleButtonPhotologRecommend.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.toggleButtonPhotologRecommend.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                binding.textViewPhotologRecommend.text = binding.textViewPhotologRecommend.text.toString().toInt().plus(1).toString()
+                binding.textViewPhotologRecommend.text =
+                    binding.textViewPhotologRecommend.text.toString().toInt().plus(1).toString()
             } else {
-                binding.textViewPhotologRecommend.text = binding.textViewPhotologRecommend.text.toString().toInt().minus(1).toString()
+                binding.textViewPhotologRecommend.text =
+                    binding.textViewPhotologRecommend.text.toString().toInt().minus(1).toString()
             }
         }
         return StoryViewHolder(binding)

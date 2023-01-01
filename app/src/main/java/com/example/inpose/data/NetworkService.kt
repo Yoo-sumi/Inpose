@@ -1,5 +1,8 @@
 package com.example.inpose.data
 
+import com.example.inpose.data.model.Story
+import com.example.inpose.data.model.User
+import com.example.inpose.data.model.Feed
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

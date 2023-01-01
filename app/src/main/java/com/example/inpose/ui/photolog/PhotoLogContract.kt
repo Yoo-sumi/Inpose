@@ -1,6 +1,6 @@
 package com.example.inpose.ui.photolog
 
-import com.example.inpose.data.Story
+import com.example.inpose.data.model.Story
 
 interface PhotoLogContract {
 

@@ -1,7 +1,6 @@
 package com.example.inpose.ui.following
 
-import com.example.inpose.data.Feed
-import com.example.inpose.data.User
+import com.example.inpose.data.model.User
 import com.example.inpose.data.following.FollowingRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
@@ -34,13 +33,10 @@ class FollowingPresenter(
         }
     }
 
-    override fun getAllFeedList(userIdList: List<Int>) {
+    override fun getAllFeedList(userIdList: List<Int>, index: Int) {
         scope.launch {
-            val followList = mutableListOf<Feed>()
-            userIdList.forEach {
-                followList.addAll(followingRepository.getFeedList(0, it))
-            }
-            view.updateFeedAdapter(followList)
+            val followList = followingRepository.getFeedList(0, userIdList[index])
+            view.addFeedList(followList)
         }
     }
 }

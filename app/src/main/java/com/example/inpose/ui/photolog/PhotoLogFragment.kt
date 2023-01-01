@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inpose.ui.photolog.adapter.PhotoLogListAdapter
-import com.example.inpose.data.Story
+import com.example.inpose.data.model.Story
 import com.example.inpose.data.photolog.PhotoLogRepository
 import com.example.inpose.databinding.FragmentPhotologBinding
 
@@ -34,9 +34,7 @@ class PhotoLogFragment : Fragment(), PhotoLogContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        photoLogListAdapter = PhotoLogListAdapter()
-        binding.recyclerViewPhotolog.adapter = photoLogListAdapter
-        presenter.loadItems(photoLogListAdapter.itemCount)
+        initAdapter()
         initScrollListener()
     }
 
@@ -46,11 +44,17 @@ class PhotoLogFragment : Fragment(), PhotoLogContract.View {
         photoLogListAdapter.notifyItemChanged(itemCount - 1, itemCount - 1 + 20)
     }
 
-    private fun initScrollListener(){
+    private fun initAdapter() {
+        photoLogListAdapter = PhotoLogListAdapter()
+        binding.recyclerViewPhotolog.adapter = photoLogListAdapter
+        presenter.loadItems(photoLogListAdapter.itemCount)
+    }
+
+    private fun initScrollListener() {
         binding.recyclerViewPhotolog.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if ((recyclerView.layoutManager as LinearLayoutManager?)?.findLastCompletelyVisibleItemPosition() == photoLogListAdapter.itemCount - 5){
+                if ((recyclerView.layoutManager as LinearLayoutManager?)?.findLastCompletelyVisibleItemPosition() == photoLogListAdapter.itemCount - 5) {
                     moreItems()
                 }
             }

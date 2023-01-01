@@ -1,4 +1,4 @@
-package com.example.inpose.adapter
+package com.example.inpose
 
 import android.graphics.Bitmap
 import android.widget.ImageView
@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
-import com.example.inpose.R
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
 @BindingAdapter("profileImageFromUrl")
@@ -24,7 +23,7 @@ fun bindProfileImageFromUrl(view: ImageView, imageUrl: String) {
 fun bindRoundImageFromUrl(view: ImageView, imageUrl: String) {
     val multiLeftTopCorner: MultiTransformation<Bitmap> = MultiTransformation(
         CenterCrop(),
-        RoundedCornersTransformation( 70, 0, RoundedCornersTransformation.CornerType.TOP_RIGHT),
+        RoundedCornersTransformation(70, 0, RoundedCornersTransformation.CornerType.TOP_RIGHT),
     )
     Glide.with(view.context)
         .load(imageUrl)
@@ -34,9 +33,6 @@ fun bindRoundImageFromUrl(view: ImageView, imageUrl: String) {
 
 @BindingAdapter("imageFromUrl")
 fun bindImageFromUrl(view: ImageView, imageUrl: String) {
-    if (imageUrl == "all") {
-
-    }
     Glide.with(view.context)
         .load(imageUrl)
         .centerCrop()

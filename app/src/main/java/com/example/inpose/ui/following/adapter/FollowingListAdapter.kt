@@ -8,7 +8,7 @@ import com.example.inpose.databinding.ItemUserBinding
 
 class FollowingListAdapter(
     private var followingList: List<FollowingItem> = emptyList(),
-    private val onClickListener: (userId: Int?) -> Unit
+    private val onClickListener: (userId: Int?, preIndex: Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var focus = 0
@@ -18,7 +18,7 @@ class FollowingListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val binding = when(viewType) {
+        val binding = when (viewType) {
             0 -> {
                 ItemUserAllBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -35,20 +35,22 @@ class FollowingListAdapter(
             }
         }
 
-        val holder = when(binding) {
+        val holder = when (binding) {
             is ItemUserAllBinding -> UserAllViewHolder(binding)
             else -> UserViewHolder(binding as ItemUserBinding)
         }
+
         binding.root.setOnClickListener {
             followingList[focus].focus = false
             followingList[holder.bindingAdapterPosition].focus = true
             notifyItemChanged(focus)
-            focus = holder.bindingAdapterPosition
             followingList[holder.bindingAdapterPosition].data?.userId.let { userId ->
                 onClickListener(
-                    userId
+                    userId,
+                    focus
                 )
             }
+            focus = holder.bindingAdapterPosition
             notifyItemChanged(focus)
         }
         return holder
@@ -72,6 +74,8 @@ class FollowingListAdapter(
     }
 
     fun getUserIdList() = followingList.mapNotNull { it.data?.userId }
+
+    fun getFocus() = focus
 
     class UserViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {

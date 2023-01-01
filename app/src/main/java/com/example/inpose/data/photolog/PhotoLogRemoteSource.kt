@@ -1,7 +1,7 @@
 package com.example.inpose.data.photolog
 
 import com.example.inpose.data.NetworkService
-import com.example.inpose.data.Story
+import com.example.inpose.data.model.Story
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

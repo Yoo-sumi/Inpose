@@ -1,7 +1,7 @@
 package com.example.inpose.data.following
 
-import com.example.inpose.data.Feed
-import com.example.inpose.data.User
+import com.example.inpose.data.model.Feed
+import com.example.inpose.data.model.User
 
 class FollowingRepository {
 

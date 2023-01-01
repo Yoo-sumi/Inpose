@@ -57,13 +57,13 @@
 
         <ToggleButton
             android:id="@+id/toggleButton_photolog_follow"
-            android:layout_width="70dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
             android:background="@drawable/toggle_follow"
             android:textColor="@drawable/text_selector"
             android:textOff="팔로우"
             android:textOn="팔로잉"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
